@@ -49,3 +49,35 @@ var Aa = 1;
 
 // -----------------------------------------------------
 // C L O S U R E
+// Functions that access variables outside of it
+// Functions defines in other functions
+
+function outer(){ // Private variables essentially
+    let message = "hellow"
+
+    function inner(){ // Closure
+        console.log(message)
+    }
+
+    inner()
+}
+
+outer()
+
+
+
+function createCounter(){
+    let count = 0
+    function incriment(){ // State maintanance
+        count++;
+        console.log(`count increased to ${count}`)
+    }
+
+    function getCount(){
+        return count
+    }
+
+    return {incriment, getCount}
+}
+
+const counter = createCounter
