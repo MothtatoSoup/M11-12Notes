@@ -24,3 +24,28 @@ console.log(globalVar) // Global var, excesable throughout folder
 
 import { exportedVaar } from "./notes2" //Imports variab;e
 
+ 
+// -----------------------------------------------------
+// H O I S T I N G 
+
+function sumFunc(a,b){ // Can define it anywhere
+    return (a + b)
+}
+
+const sumConst = (a,b) => a + b // Built in so no hoisting :(
+
+console.log(sumFunc(1,3))
+console.log(constFun(1,3))
+
+// Takes some of ur code and automatically movies it to the top of ur file
+// Works w/ functions 
+// not with const or let keywords
+// var can be hoisted but it works different
+
+console.log(Aa);
+
+var Aa = 1;
+// hoists the var intilization but not what it is defined as (You have to define it seperatley)
+
+// -----------------------------------------------------
+// C L O S U R E
