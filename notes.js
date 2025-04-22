@@ -193,7 +193,7 @@ task1(() => {
 
 
 // ------------------------------------------------
-// A S Y N C
+// A S Y N C R O N O U S  C O D E
 // Sync - Code is run line by line; waits for an operation to be complete b4 moving to next task
 console.log("1")
 console.log("2")
@@ -216,6 +216,92 @@ function f2(){
     console.log("2")
     console.log("3")
 }
+
+// ------------------------------------------------
+// P R O M I S E
+// Object that manages asyncronous opererations
+// Pending -> Resolved or Rejected
+
+// EX:
+
+// CHORES
+// 1. Walk the dof
+// 2. Clean the kitchen
+// 3. Take trash out
+
+function walkDoge(){
+    return new Promise((resolve, reject) => { 
+        setTimeout(() => {
+        console.log("Doge has been walked")
+    }, 1500)} )
+}
+function cleanKitch(){
+    return new Promise((resolve, reject) => { 
+        setTimeout(() => {
+        console.log("kitchen has been cleaned")
+    }, 2500)} )
+}
+function takeTrash(){
+    return new Promise((resolve, reject) => { 
+        setTimeout(() => {
+        console.log("trash has been took")
+    }, 500)} )
+}
+
+walkDoge.then(value => {console.log(value); return cleanKitch()}).then(value => {console.log(value); return takeTrash()}).then(value => {console.log(value); console.log("You finished all ur chores!!")})
+// Will not continue if one of the things is rejected
+
+// walkDoge(() => { // No promises = callback hell :(
+//     cleanKitch(() => {
+//         takeTrash(() => {
+//             console.log(" You complete chores")
+//         })
+//     })
+// })
+
+
+
+
+// ------------------------------------------------
+// A W A I T / A S Y N C
+//Async = make a promis return a promise
+//Await = makes an async function wait for a promise
+
+// Allows asyncro code to be written in a syncroneous manner
+
+function walkDoge(){ 
+    return new Promise((resolve, reject) => { 
+        setTimeout(() => {
+        console.log("Doge has been walked")
+    }, 1500)} )
+}
+function cleanKitch(){
+    return new Promise((resolve, reject) => { 
+        setTimeout(() => {
+        console.log("kitchen has been cleaned")
+    }, 2500)} )
+}
+function takeTrash(){
+    return new Promise((resolve, reject) => { 
+        setTimeout(() => {
+        console.log("trash has been took")
+    }, 500)} )
+}
+
+async function doChores() { // returns a promise that doesn't resolve or reject
+    const walkDogRes = await walkDoge();// Await can only be used in async functions
+    console.log(walkDogRes)
+
+    const cleanKitchRes = await cleanKitch()
+    console.log(walkDogRes)
+
+    const takeTrashRes = await takeTrash()
+    console.log(cleanKitchRes)
+
+    console.log("You finished ur chores!!!")
+}
+
+doChores()
 
 
 
