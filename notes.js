@@ -25,6 +25,9 @@ console.log(globalVar) // Global var, excesable throughout folder
 import { exportedVaar } from "./notes2" //Imports variab;e
 
  
+
+
+
 // -----------------------------------------------------
 // H O I S T I N G 
 
@@ -46,6 +49,9 @@ console.log(Aa);
 
 var Aa = 1;
 // hoists the var intilization but not what it is defined as (You have to define it seperatley)
+
+
+
 
 // -----------------------------------------------------
 // C L O S U R E
@@ -81,3 +87,104 @@ function createCounter(){
 }
 
 const counter = createCounter
+
+
+
+
+// ------------------------------------------------
+// M E T H O D   C H A I N I N G
+// Calling one method after another in one continues line of code
+
+// ----No Chain----
+
+let username = window.prompt("Enter ur username")
+
+username = username.trim(); // trims whitespace
+
+let letter = username.charAt(0); //1st letter
+letter = letter.toUpperCase()
+
+let xChar = username.slice(1) //all letters after index 0
+xChar = xChar.toLowerCase()
+
+username = letter + xChar
+
+console.log(username)
+
+// ----Chaining----
+username = username.trim().charAt(0).toUpperCase() + username.trim().slice(1).toLowerCase()
+console.log(username)
+
+
+
+
+// ------------------------------------------------
+// C A L L B A C K S
+// A function that is passed as an argument in a another function
+// Used for async operations
+
+//"When ur done, call this next"
+
+
+// Ex: 1
+Hello(GB) // 'GB'  is the callback, only runs when Hello is done
+
+function Hello(callback){
+    setTimeout( function() {
+        console.log("hello")
+    }, 3000)
+
+    callback() // paramater name w/ parnthesis
+}
+
+function GB(){
+    console.log("Goodbye")
+}
+
+
+// Ex: 2
+numSum(logRes,2,3)
+
+function numSum(callback,x,y){ // Can still use normal paramaters
+    let result = x + y
+    callback(result)
+}
+
+function logRes(result){
+    console.log(result)
+}
+
+// C A L L B A C K   H E L L
+
+
+
+// ------------------------------------------------
+// A S Y N C
+// Sync - Code is run line by line; waits for an operation to be complete b4 moving to next task
+console.log("1")
+console.log("2")
+console.log("3")
+
+// Async - Mult operations happen at once; does not block code; does not wait
+setTimeout(() => console.log("1"), 3000) // Happens last, does not wait to exucute other code while waiting
+console.log("2")
+console.log("3")
+
+f1(f2)
+
+function f1(callback){
+    setTimeout(() => {console.log("1")
+        callback()
+    }, 3000)
+}
+
+function f2(){
+    console.log("2")
+    console.log("3")
+}
+
+
+// ------------------------------------------------
+//J S O N
+
+
